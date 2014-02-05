@@ -5,7 +5,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string :txt
       t.timestamp :time
       t.boolean :deleted
-      t.user :user
+      t.integer :user_id
+      t.integer :category_id
 
       t.timestamps
     end

@@ -1,8 +1,8 @@
 class CreateUpVoteComments < ActiveRecord::Migration
   def change
     create_table :up_vote_comments do |t|
-      t.user :user
-      t.comment :comment
+      t.integer :user_id
+      t.integer :comment_id
 
       t.timestamps
     end
