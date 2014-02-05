@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  txt: MyString
+  time: 2014-02-04 20:01:09
+  deleted: false
+  user: 
+
+two:
+  title: MyString
+  txt: MyString
+  time: 2014-02-04 20:01:09
+  deleted: false
+  user: 
