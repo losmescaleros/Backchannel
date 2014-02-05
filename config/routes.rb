@@ -1,4 +1,10 @@
 Backchannel::Application.routes.draw do
+  get "account/register"
+
+  get "account/login"
+
+  get "account/logout"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
