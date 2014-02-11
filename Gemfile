@@ -18,6 +18,8 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+
 end
 
 gem 'jquery-rails'
@@ -30,6 +32,7 @@ group :test do
   gem "minitest-reporters", '>= 0.5.0'
 end
 
+gem 'bootstrap-sass', '~> 3.1.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
