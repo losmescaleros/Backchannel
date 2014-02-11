@@ -5,11 +5,13 @@ one:
   txt: MyString
   time: 2014-02-04 20:01:09
   deleted: false
-  user: 
+  user_id: MyString
+  category_id: MyString
 
 two:
   title: MyString
   txt: MyString
   time: 2014-02-04 20:01:09
   deleted: false
-  user: 
+  user_id: MyString
+  category_id: MyString
