@@ -3,6 +3,8 @@ class AccountController < ApplicationController
     @user = User.new
   end
 
+
+
   def login
     puts login_params
     @user = User.authenticate(login_params)

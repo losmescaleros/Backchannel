@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :user_level
+  has_secure_password
+  # To ensure uniqueness, make sure email address is downcased before save
+  before_save { self.email = email.downcase }
+  attr_accessible :email, :name, :password, :user_level, :password_confirmation
+
   after_initialize :default_values
 
   validates :email, presence: true,
