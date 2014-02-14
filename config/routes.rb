@@ -1,4 +1,24 @@
 Backchannel::Application.routes.draw do
+  get "users/index"
+
+  get "users/show"
+
+  get "users/edit"
+
+  get "users/new"
+
+  get "users/create"
+
+  get "users/destroy"
+
+  get "users/update"
+
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users
+  match '/register', to: 'users#new', via: 'get'
+  match '/login', to: 'sessions#new', via: 'get'
+  match '/logout', to: 'sessions#destroy', via: 'delete'
+
   get "account/register"
 
   get "account/login"
