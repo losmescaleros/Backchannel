@@ -9,8 +9,15 @@ class User < ActiveRecord::Base
   validates :user_level, presence: true
 
   has_many :posts
+  has_many :comments
+  has_many :up_vote_posts
+  has_many :up_vote_comments
 
-  def authenticate(email, password)
+  def <=>(other)
+    self.name<=>other.name
+  end
+
+  def authenticate(email, password) #this may or may not work. If I read the API right, this should return nil if no record was found with the given email and password, or the tuple if it was found
     where(email: email, password: password).first
   end
 
