@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_secure_password
   # To ensure uniqueness, make sure email address is downcased before save
   before_save { self.email = email.downcase }
+  # New users should have a remember_token for a new session
+  before_create :create_remember_token
+
   attr_accessible :email, :name, :password, :user_level, :password_confirmation
 
   after_initialize :default_values
@@ -21,12 +24,26 @@ class User < ActiveRecord::Base
     self.name<=>other.name
   end
 
-  def authenticate(email, password) #this may or may not work. If I read the API right, this should return nil if no record was found with the given email and password, or the tuple if it was found
-    where(email: email, password: password).first
+  #def authenticate(email, password) #this may or may not work. If I read the API right, this should return nil if no record was found with the given email and password, or the tuple if it was found
+    #where(email: email, password: password).first
+  #end
+
+  # Class method to get a randomly generated token
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
   end
 
-  private
-  def default_values
-    self.user_level ||= 0
+  # Class method to encrypt some token in SHA1
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
   end
+  private
+    def default_values
+      self.user_level ||= 0
+    end
+
+    def create_remember_token
+      # create a new session token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 end
