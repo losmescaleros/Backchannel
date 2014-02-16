@@ -41,10 +41,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  #def authenticate(email, password) #this may or may not work. If I read the API right, this should return nil if no record was found with the given email and password, or the tuple if it was found
-    #where(email: email, password: password).first
-  #end
-
   # Class method to get a randomly generated token
   def User.new_remember_token
     SecureRandom.urlsafe_base64

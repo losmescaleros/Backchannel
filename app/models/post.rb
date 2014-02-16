@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :deleted, :time, :title, :txt
+  attr_accessible :deleted, :time, :title, :txt, :user_id, :category_id
   after_initialize :default_values
 
   validates :title, presence: true, length: { in: 5..300 } #title should be there, and also be at least a few words
@@ -9,24 +9,29 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :up_vote_posts
 
-  def comments(id)
-    Comment.where('post_id = ?', id).order('time ASC')
+  public
+  def comments
+    Comment.where('post_id = ?', self.id).order('time ASC')
   end
 
-  def up_votes(id)
-    UpVotePost.where('post_id = ?, id')
+  def up_votes
+    UpVotePost.where('post_id = ?', self.id)
   end
 
-  def up_vote_count(id)
-    up_votes(id).count
+  def up_vote_count
+    up_votes.count
   end
 
-  def up_voted?(post_id, user_id) #to determine whether we should let the user upvote something
-    UpVotePost.where('post_id = ? AND user_id = ?', post_id, user_id).exists?
+  def up_voted?(user_id) #to determine whether we should let the user upvote something
+    UpVotePost.where('post_id = ? AND user_id = ?', self.id, user_id).exists?
+  end
+
+  def numerical_value
+    self.up_vote_count.to_f / (((Time.now - self.time).to_i)/(3600)).to_f
   end
 
   def <=>(other) #defined as the number of upvotes / the days elapsed since creation: high numbers of upvotes will prevent a topic from "sageing"
-    up_vote_count(self.id) / (((Time.now - self.time).to_i)/(60*60)) <=> up_vote_count(other.id) / (((Time.now - other.time).to_i)/(60*60))
+    (self.numerical_value<=>other.numerical_value)
   end
 
   private

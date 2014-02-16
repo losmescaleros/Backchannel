@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :deleted, :time, :txt
+  attr_accessible :deleted, :time, :txt, :post_id, :user_id
   after_initialize :default_values
 
   validates :txt, presence:true, length: { in: 10..60000 } #comments can be a bit shorter than posts

@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  title: MyString
-  txt: MyString
+post_one:
+  title: postone
+  txt: This is a string of at least 50 characters (counting spaces too)
   time: 2014-02-04 20:01:09
   deleted: false
-  user_id: MyString
-  category_id: MyString
+  user: one
+  category: category_two
 
-two:
-  title: MyString
-  txt: MyString
+post_two:
+  title: posttwo
+  txt: This is another string of at least 50 characters (counting spaces too)
   time: 2014-02-04 20:01:09
   deleted: false
-  user_id: MyString
-  category_id: MyString
+  user: two
+  category: category_one

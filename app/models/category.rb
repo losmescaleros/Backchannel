@@ -15,7 +15,6 @@ class Category < ActiveRecord::Base
 
   private
   def default_values
-    self.time ||= Time.now.to_formatted_s :rfc822 #picked this up from stackoverflow for getting a correctly formatted timestamp
-    self.deleted ||= false
+    self.approved ||= false
   end
 end

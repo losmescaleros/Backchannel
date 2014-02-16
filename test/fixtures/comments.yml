@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  txt: MyString
+comment_one:
+  txt: This is a string of at least 10 characters
   time: 2014-02-04 20:02:12
   deleted: false
-  user_id: MyString
-  post_id: MyString
+  user: one
+  post: post_one
 
-two:
-  txt: MyString
+comment_two:
+  txt: This is another string of at least 10 characters
   time: 2014-02-04 20:02:12
   deleted: false
-  user_id: MyString
-  post_id: MyString
+  user: two
+  post: post_two

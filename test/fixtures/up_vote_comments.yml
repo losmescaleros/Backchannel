@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  user_id: MyString
-  comment_id: MyString
+upv_comment_one:
+  user: one
+  comment: comment_one
 
-two:
-  user_id: MyString
-  comment_id: MyString
+upv_comment_two:
+  user: two
+  comment: comment_one
