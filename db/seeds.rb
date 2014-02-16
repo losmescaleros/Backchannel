@@ -10,3 +10,15 @@ User.create(name: 'super_admin',
             password: 'super_admin',
             password_confirmation: 'super_admin',
             user_level: 3)
+
+User.create(name: 'Marty McFly',
+            email: 'backto@thefuture.com',
+            password: 'marty',
+            password_confirmation: 'marty',
+            user_level: 1)
+
+User.create(name: 'Mitchell Neville',
+            email: 'mdnevill@ncsu.edu',
+            password: 'mitchell',
+            password_confirmation: 'mitchell',
+            user_level: 1)

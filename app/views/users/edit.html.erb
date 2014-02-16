@@ -2,12 +2,20 @@
 <h1>Manage your profile</h1>
 
 <p class="lead">
-  Update your user information below.
+  Update your user information below. Please be sure to fill in all fields.
 </p>
 <div class = "row">
   <div class="col-xs-8">
+      <%if current_user?(@user) && !current_user.super_admin? %>
+        <div class="pull-right">
+          <%= link_to "Remove My Account",
+                      @user,
+                      method: :delete,
+                      data: {confirm: "Are you sure you wish to delete your account?"} %>
+        </div>
 
-      <%= form_for(@user, url: users_edit_path, html: {:role => "form", :class => "form-horizontal"}) do |f| %>
+      <%end%>
+      <%= form_for(@user) do |f| %>
         <% render 'shared/error_messages' %>
         <div class="form-group">
             <%= f.label :name %>

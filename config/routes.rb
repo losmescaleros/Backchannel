@@ -16,6 +16,8 @@ Backchannel::Application.routes.draw do
 
   get "users/update"
 
+  get "users/promote"
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   match '/register', to: 'users#new', via: 'get'

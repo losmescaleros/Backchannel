@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :admin_user, only: [:destroy]
+  before_filter :admin_user, only: [:destroy, :promote]
 
   def index
-    @users = User.all
+    @users = User.all.sort
   end
 
   def show
@@ -34,16 +34,39 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    user = User.find(params[:id])
+    #
+    if(user.super_admin?)
+      flash[:error] = "Cannot remove super administrator!"
+      redirect_to users_url
+    end
+    user.destroy
+    flash[:success] = "User successfully removed."
+    redirect_to users_url
   end
 
   def update
     @user = User.find(params[:id])
     if(@user.update_attributes(user_params))
-      flash[:success] = "Successfully updated user information"
+      flash[:success] = "Successfully updated user information."
       redirect_to @user
     else
+      flash[:error] = "Failed to update profile information!"
       render 'edit'
     end
+  end
+
+  def promote
+    @user = User.find(params[:id])
+    if(!@user.admin? && @user.promote)
+
+      flash[:success] = "Successfully promoted user."
+
+    else
+      flash[:error] = "Failed to promote user to administrator!"
+    end
+
+    redirect_to users_url
   end
 
   private

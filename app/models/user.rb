@@ -35,6 +35,12 @@ class User < ActiveRecord::Base
     self.user_level == SUPER_ADMIN_USER_LEVEL
   end
 
+  def promote
+    if !self.admin?
+      self.update_attribute(:user_level, ADMIN_USER_LEVEL)
+    end
+  end
+
   #def authenticate(email, password) #this may or may not work. If I read the API right, this should return nil if no record was found with the given email and password, or the tuple if it was found
     #where(email: email, password: password).first
   #end

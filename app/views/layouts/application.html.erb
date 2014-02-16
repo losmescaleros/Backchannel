@@ -41,7 +41,7 @@
                     <li>
                       <%= link_to "Manage Users", users_index_path %>
 
-                      <%= link_to "Profile", current_user %>
+                      <%= link_to "Edit Profile", edit_user_path(current_user) %>
                     </li>
                     <li class="divider"></li>
                     <li>
@@ -62,7 +62,13 @@
 <div class="container">
     <!-- User this to show any flash messages or errors before the body -->
     <% flash.each do |key, value| %>
-        <div class="flash <%= key %> alert alert-danger"><%= value %></div>
+      <%if key == :success %>
+        <div class="flash <%= key %> alert alert-success"><%= value %></div>
+      <%elsif key == :error %>
+        <div class="flash <%= key %> alert alert-warning"><%= value %></div>
+      <%else%>
+        <div class="flash <%= key %> alert alert-info"><%= value %></div>
+      <% end%>
     <% end %>
 
 
