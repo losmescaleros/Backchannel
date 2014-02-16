@@ -5,8 +5,8 @@ class Category < ActiveRecord::Base
   validates :name, presence: true, length: { in: 5..200 } #names shouldn't be overly long, but we need something
   has_many :posts
 
-  def posts(id)
-    Post.where('category_id = ?', id).sort('')
+  def posts
+    Post.where('category_id = ?', self.id)
   end
 
   def <=>(other)

@@ -7,16 +7,16 @@ class Comment < ActiveRecord::Base
   belongs_to :post
   has_many :up_vote_comments
 
-  def up_votes(id)
-    UpVoteComment.where('comment_id = ?, id')
+  def up_votes
+    UpVoteComment.where('comment_id = ?', self.id)
   end
 
-  def up_vote_count(id)
-    up_votes(id).count
+  def up_vote_count
+    up_votes.count
   end
 
-  def up_voted?(comment_id, user_id) #to determine whether we should let the user upvote something
-    UpVoteComment.where('comment_id = ? AND user_id = ?', comment_id, user_id).exists?
+  def up_voted?(user_id) #to determine whether we should let the user upvote something
+    UpVoteComment.where('comment_id = ? AND user_id = ?', self.id, user_id).exists?
   end
 
   def <=>(other)
