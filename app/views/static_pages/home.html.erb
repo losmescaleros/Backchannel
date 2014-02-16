@@ -1,0 +1,26 @@
+<% provide(:title, "Backchannel Home") %>
+<div class="jumbotron">
+  <h1>Backchannel Application</h1>
+  <p>
+    This application allows you to view and post questions. To get started, view existing posts or create an account.
+  </p>
+  <div class="row">
+    <div class="col-xs-4">
+      <%= link_to "More Information", about_url, :class => "btn btn-lg btn-primary" %>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-lg btn-primary">View All Posts</button>
+    </div>
+    <%if !signed_in? %>
+        <div class="col-xs-4">
+          <%= link_to "Log In", login_url, :class => "btn btn-lg btn-success" %>
+        </div>
+    <%end%>
+
+  </div>
+
+
+
+</div>
+
+

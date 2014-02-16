@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Backchannel</a>
+      <%= link_to "Backchannel", home_url, :class => "navbar-brand" %>
     </div>
 
     <!-- Nav Links Here -->
@@ -38,9 +38,13 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %></a>
                 <ul class="dropdown-menu">
-                    <li>
-                      <%= link_to "Manage Users", users_index_path %>
+                    <%if current_user.admin? %>
+                      <li>
+                        <%= link_to "Manage Users", users_index_path %>
+                      </li>
+                    <%end%>
 
+                    <li>
                       <%= link_to "Edit Profile", edit_user_path(current_user) %>
                     </li>
                     <li class="divider"></li>
