@@ -1,6 +1,12 @@
 Backchannel::Application.routes.draw do
-  # For now, ~/ will take you to the login page.
-  root :controller => "sessions", :action => "new"
+  get "static_pages/home"
+
+  get "static_pages/help"
+
+  get "static_pages/about"
+
+  # ~/ will take you to the static home page.
+  root :controller => "static_pages", :action => "home"
 
   get "users/index"
 
@@ -23,6 +29,9 @@ Backchannel::Application.routes.draw do
   match '/register', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'
+  match '/home', to: 'static_pages#home', via: 'get'
+  match '/about', to: 'static_pages#about', via: 'get'
+  match '/help', to: 'static_pages#help', via: 'get'
 
   get "account/register"
 

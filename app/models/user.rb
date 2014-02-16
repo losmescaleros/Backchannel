@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   SUPER_ADMIN_USER_LEVEL = 3
   ADMIN_USER_LEVEL = 2
+  VALID_EMAIL = /\A[\w+\-.]+@[\w\-.]+\.[a-z]{2,3}\z/i
 
   has_secure_password
   # To ensure uniqueness, make sure email address is downcased before save
@@ -13,7 +14,8 @@ class User < ActiveRecord::Base
   after_initialize :default_values
 
   validates :email, presence: true,
-            uniqueness: true
+            uniqueness: true,
+            format: {with: VALID_EMAIL}
   validates :name, presence: true
   validates :password, presence: true
   validates :user_level, presence: true
