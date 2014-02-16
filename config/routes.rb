@@ -1,4 +1,7 @@
 Backchannel::Application.routes.draw do
+  # For now, ~/ will take you to the login page.
+  root :controller => "sessions", :action => "new"
+
   get "users/index"
 
   get "users/show"

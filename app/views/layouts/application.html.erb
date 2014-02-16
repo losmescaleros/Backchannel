@@ -39,8 +39,9 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %></a>
                 <ul class="dropdown-menu">
                     <li>
-                      <a href="#">Admin Stuff</a>
-                      <%= link_to "User Preferences", current_user %>
+                      <%= link_to "Manage Users", users_index_path %>
+
+                      <%= link_to "Profile", current_user %>
                     </li>
                     <li class="divider"></li>
                     <li>

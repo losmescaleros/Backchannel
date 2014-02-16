@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  SUPER_ADMIN_USER_LEVEL = 3
+  ADMIN_USER_LEVEL = 2
+
   has_secure_password
   # To ensure uniqueness, make sure email address is downcased before save
   before_save { self.email = email.downcase }
@@ -22,6 +25,14 @@ class User < ActiveRecord::Base
 
   def <=>(other)
     self.name<=>other.name
+  end
+
+  def admin?
+    self.user_level == SUPER_ADMIN_USER_LEVEL || self.user_level == ADMIN_USER_LEVEL
+  end
+
+  def super_admin?
+    self.user_level == SUPER_ADMIN_USER_LEVEL
   end
 
   #def authenticate(email, password) #this may or may not work. If I read the API right, this should return nil if no record was found with the given email and password, or the tuple if it was found
