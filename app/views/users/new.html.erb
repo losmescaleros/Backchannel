@@ -1,0 +1,21 @@
+<%= provide(:title, "Register") %>
+<h1>Register.</h1>
+<p class="lead">Please enter the following information to register.</p>
+<div class="col-sm-4">
+  <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <div class="form-group">
+
+        <%= f.label :email %>
+        <%= f.text_field :email, :class => "form-control", :placeholder => "Email Address" %>
+        <%= f.label :name %>
+        <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+        <%= f.label "Confirm Password" %>
+        <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm Password" %>
+
+      </div>
+      <%= f.submit "Register", :class => "btn btn-default" %>
+  <% end %>
+</div>
