@@ -62,6 +62,8 @@ Backchannel::Application.routes.draw do
   get "posts/:id/commentunvote" => "posts#commentunvote"
   get "posts/:id/commentdelete" => "posts#deletecomment"
 
+  get "posts/search/:search" => "posts#search"
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :posts do

@@ -17,6 +17,11 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def search
+    terms = params[:search].split(/[ _]/)
+    @posts = search_for(terms)
+  end
+
   def create
     @post = Post.new(post_params)
     @post.user = current_user
@@ -160,4 +165,13 @@ private
     redirect_to login_url, notice: "Log in to continue" unless signed_in?
   end
 
+  def search_for(search_terms) #class method to find posts with the given search terms, search_terms is expected to be an array
+    posts = Post.all
+    search_terms.each do |term|
+      posts.reject! do |post|
+        post.txt !~ /#{term}/i
+      end
+    end
+    posts
+  end
 end
