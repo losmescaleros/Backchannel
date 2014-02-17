@@ -52,8 +52,8 @@ class PostTest < ActiveSupport::TestCase
   test "posts must report correct comment count" do
     post = posts(:post_one)
     post2 = posts(:post_two)
-    assert (post.comments.count == 1), "Post one should report one comments"
-    assert (post2.comments.count == 1), "Post two should report one comments"
+    assert (post.comments.count == 1), "Post one should report one comment"
+    assert (post2.comments.count == 2), "Post two should report two comments"
   end
 
   test "posts must report correct upvoter" do
@@ -76,6 +76,8 @@ class PostTest < ActiveSupport::TestCase
   test "posts should sort properly" do
     post = posts(:post_one)
     post2 = posts(:post_two)
-    assert ((post <=> post2) > 0), "Post one should be considered higher than post two"
+    posts = [post, post2]
+    posts.sort!
+    assert (posts[0] == post2), "post one should be greater than post two"
   end
 end
