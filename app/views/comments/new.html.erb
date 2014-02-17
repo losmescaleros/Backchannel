@@ -1,0 +1,14 @@
+<%= provide(:title, "New Comment") %>
+<h1>New Comment</h1>
+<p class="lead">Please enter the following information on your comment.</p>
+<div class="col-sm-4">
+  <%= form_for (@comment), url: {action: "create"}, method: :get do |f| %>
+      <%= render 'shared/comment_error_messages' %>
+      <div class="form-group">
+        <%= f.label "Comment" %>
+        <%= f.text_area :txt, :class => "form-control", :placeholder => "Comment" %>
+      </div>
+      <%= f.submit 'Comment', :class => "btn btn-default" %>
+  <% end %>
+
+</div>

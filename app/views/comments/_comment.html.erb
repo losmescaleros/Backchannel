@@ -1,0 +1,33 @@
+<style type="text/css">
+
+    .comments {
+        background-color: paleturquoise;
+        font-size:14pt;
+        padding-left: 5px;
+        margin: 5px;
+        margin-left: 30px;
+    }
+
+</style>
+<div class="comments">
+  <div style="margin: 5px; font-size:12pt;">
+    <%= comment.user.name %> : <%= comment.time %>
+    <% if signed_in? && current_user==comment.user %>
+        <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
+        <%= link_to "Delete", :controller => "posts" , :action=> :deletecomment, :cid=>comment.id %>
+
+  <% end %>
+    <div style="float: right; text-align: right">
+      Votes: <%= comment.up_vote_count() %>
+      <% if signed_in? %>
+          <% if comment.up_voted?(current_user) %>
+              <%= link_to "DeVote", :controller => "posts" , :action=> :commentunvote, :cid=>comment.id %>
+          <% else %>
+              <%= link_to "UpVote", :controller => "posts" , :action=> :commentupvote, :cid=>comment.id %>
+          <% end %>
+      <% end %>
+    </div>
+    <hr style="background:black; border:0; height:2px;  margin: 1px;margin-right: 5px">
+  </div>
+  <%= comment.txt %>
+</div>

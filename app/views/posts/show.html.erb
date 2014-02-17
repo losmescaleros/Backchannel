@@ -1,9 +1,43 @@
 <% provide(:title, "Post") %>
 
-<h1><%= @post.title %></h1>
+<style type="text/css">
+    .post {
+        background-color: lightblue;
+        font-size:18pt;
+        padding-left: 5px;
+        margin: 5px;
+    }
+</style>
 
-<div class="row">
-  <div class="col-xs-4">
-    <%= label(:txt, @post.txt) %>
+
+
+<h1><%= @post.title %></h1>
+<h4><%= @post.category.name %></h4>
+
+<div class="post">
+  <div style="margin: inherit; font-size:12pt;">
+    <%= @post.user.name %> : <%= @post.time %>
+    <% if signed_in? && current_user==@post.user %>
+        <%= link_to 'Edit', edit_post_path(@post) %>
+        <%= link_to 'Delete', @post, method: :delete, confirm: 'Are you sure?'%>
+    <% end %>
+    <div style="float: right; text-align: right">
+    Votes: <%= @post.up_vote_count() %>
+      <% if signed_in? %>
+          <% if @post.up_voted?(current_user) %>
+              <%= link_to "DeVote", :controller => "posts" , :action=> "unvote" %>
+          <% else %>
+              <%= link_to "UpVote", :controller => "posts" , :action=> "upvote" %>
+          <% end %>
+      <% end %>
+    </div>
+    <hr style="background:black; border:0; height:2px; margin: 1px;margin-right: 5px">
   </div>
+  <%= @post.txt %>
 </div>
+
+
+<%= render @post.comments %>
+
+
+<%= link_to "Add Comment", :controller => "comments" , :action=>"new"%>

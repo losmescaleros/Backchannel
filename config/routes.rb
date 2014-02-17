@@ -44,9 +44,27 @@ Backchannel::Application.routes.draw do
 
   get "posts/new"
 
+  get "comments/show"
+
+  get "comments/new"
+
+  get "comments/edit"
+
+
+  get "posts/:id/upvote" => "posts#upvote"
+  get "posts/:id/unvote" => "posts#unvote"
+  get "posts/:id/comment" => "comments#new"
+  get "posts/:id/comment/create" => "comments#create"
+  get "posts/:id/comment/update" => "comments#update"
+  get "posts/:id/commentupvote" => "posts#commentupvote"
+  get "posts/:id/commentunvote" => "posts#commentunvote"
+  get "posts/:id/commentdelete" => "posts#deletecomment"
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   resources :categories
   match '/register', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
@@ -54,6 +72,7 @@ Backchannel::Application.routes.draw do
   match '/home', to: 'static_pages#home', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
+
 
   get "account/register"
 
