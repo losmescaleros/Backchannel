@@ -106,8 +106,22 @@ class UserTest < ActiveSupport::TestCase
 
   test "promote returns true if user is not an admin" do
     user = User.new(email: "some@email.com",
-                    user_level: 1)
+                    user_level: User::REGULAR_USER_LEVEL)
     assert (user.promote), "Promoting a non-admin user did not return true"
+  end
+
+  test "demote returns nil if user is already a regular user" do
+    user = User.new(user_level: User::REGULAR_USER_LEVEL)
+    assert !(user.demote), "Demoting a regular user did not return nil"
+  end
+
+  test "demote returns true if user is an admin and not a super admin" do
+    user = User.new(email: "some@email.com",
+                    user_level: User::ADMIN_USER_LEVEL)
+    assert (user.demote), "Demoting an admin user did not return true"
+
+    user.user_level = User::SUPER_ADMIN_USER_LEVEL
+    assert !(user.demote), "Demoting a super_admin did not return nil"
   end
 
 end

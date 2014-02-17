@@ -40,6 +40,8 @@ Backchannel::Application.routes.draw do
 
   get "users/promote"
 
+  get "users/demote"
+
   get "posts/index"
 
   get "posts/new"

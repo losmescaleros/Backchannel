@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   SUPER_ADMIN_USER_LEVEL = 3
   ADMIN_USER_LEVEL = 2
+  REGULAR_USER_LEVEL = 1
   VALID_EMAIL = /\A[\w+\-.]+@[\w\-.]+\.[a-z]{2,3}\z/i
 
   has_secure_password
@@ -44,6 +45,12 @@ class User < ActiveRecord::Base
   def promote
     if !self.admin?
       self.update_attribute(:user_level, ADMIN_USER_LEVEL)
+    end
+  end
+
+  def demote
+    if self.admin? && !self.super_admin?
+      self.update_attribute(:user_level, REGULAR_USER_LEVEL)
     end
   end
 

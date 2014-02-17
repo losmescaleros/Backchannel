@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:edit, :update, :destroy]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: [:index, :destroy, :promote]
+  before_filter :super_admin_user, only: [:demote]
 
   def index
     @users = User.all.sort
@@ -69,6 +70,19 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def demote
+    @user = User.find(params[:id])
+    if(current_user.super_admin? && @user.admin? && !@user.super_admin? && @user.demote)
+
+      flash[:success] = "Successfully demoted user."
+
+    else
+      flash[:error] = "Failed to demote user from administrator!"
+    end
+
+    redirect_to users_url
+  end
+
   private
     def user_params
       params.require(:user).permit(:password, :password_confirmation, :email, :name)
@@ -84,6 +98,10 @@ class UsersController < ApplicationController
     end
 
     def admin_user
-        redirect_to root_url unless (!current_user.nil? && current_user.admin?)
+      redirect_to root_url unless (!current_user.nil? && current_user.admin?)
+    end
+
+    def super_admin_user
+      redirect_to root_url unless (!current_user.nil? && current_user.super_admin?)
     end
 end
