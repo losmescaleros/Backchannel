@@ -1,0 +1,17 @@
+<tr>
+  <td>
+    <%= link_to post.title, post %>
+  </td>
+  <td>
+    <%= post.user.name %>
+  </td>
+  <td>
+    <%= post.category %>
+  </td>
+  <td>
+    <%= post.up_vote_count %>
+  </td>
+  <td>
+    <%= post.comments.count %>
+  </td>
+</tr>

@@ -1,0 +1,16 @@
+<%= provide(:title, "New Post") %>
+<h1>New Post</h1>
+<p class="lead">Please enter the following information on your post.</p>
+<div class="col-sm-4">
+  <%= form_for @post, url: {action: "create"} do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, :class => "form-control", :placeholder => "Title" %>
+        <%= f.label :txt %>
+        <%= f.text_field :txt, :class => "form-control", :placeholder => "Text" %>
+        <%= f.label :Category %>
+  <!--       collection_select :category, :cat_id, Category.all, :id, :name %> -->
+      </div>
+      <%= f.submit 'Post', :class => "btn btn-default" %>
+  <% end %>
+</div>

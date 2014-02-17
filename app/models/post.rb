@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   after_initialize :default_values
 
   validates :title, presence: true, length: { in: 5..300 } #title should be there, and also be at least a few words
-  validates :txt, presence:true, length: { in: 50..60000 } #we should probably force the text of the post to be interesting
+  validates :txt, presence:true, length: { in: 8..60000 } #we should probably force the text of the post to be interesting
   belongs_to :user
   belongs_to :category
   has_many :comments

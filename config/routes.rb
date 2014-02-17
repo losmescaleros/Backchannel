@@ -40,8 +40,13 @@ Backchannel::Application.routes.draw do
 
   get "users/promote"
 
+  get "posts/index"
+
+  get "posts/new"
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
+  resources :posts
   resources :categories
   match '/register', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
