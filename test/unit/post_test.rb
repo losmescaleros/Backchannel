@@ -67,10 +67,8 @@ class PostTest < ActiveSupport::TestCase
   test "posts should report numerical value properly" do
     post = posts(:post_one)
     post2 = posts(:post_two)
-    post_val = post.numerical_value
-    post2_val = post2.numerical_value
     assert (post.numerical_value > 0), "Post one should have positive value"
-    assert (post2.numerical_value == 0), "Post two should have zero value"
+    assert (post2.numerical_value < post.numerical_value), "Post two should have less value than post one"
   end
 
   test "posts should sort properly" do
