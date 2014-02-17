@@ -1,0 +1,15 @@
+<% provide(:title, "Categories") %>
+<h1>All Categories.</h1>
+<%=link_to "Create New Category", categories_new_path, :class => "pull-right" %>
+<table class="table">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Approval
+    </th>
+  </tr>
+
+  <%= render @categories %>
+</table>

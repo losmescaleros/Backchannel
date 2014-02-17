@@ -1,4 +1,20 @@
 Backchannel::Application.routes.draw do
+  get "categories/new"
+
+  get "categories/create"
+
+  get "categories/edit"
+
+  get "categories/update"
+
+  get "categories/destroy"
+
+  get "categories/show"
+
+  get "categories/index"
+
+  get "categories/approve"
+
   get "static_pages/home"
 
   get "static_pages/help"
@@ -26,6 +42,7 @@ Backchannel::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
+  resources :categories
   match '/register', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete'

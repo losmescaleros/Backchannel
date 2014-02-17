@@ -1,0 +1,15 @@
+<%provide(:title, "New Category")%>
+<h1>Propose New Category.</h1>
+<p class="lead">Propose a new category below. You may use it pending administrative approval.</p>
+<div class="col-sm-4">
+  <%= form_for(@category) do |f| %>
+        <%= render 'shared/category_error_messages' %>
+      <div class="form-group">
+
+        <%= f.label :name %>
+        <%= f.text_field :name, :class => "form-control", :placeholder => "Name" %>
+
+      </div>
+      <%= f.submit "Submit", :class => "btn btn-default" %>
+  <% end %>
+</div>

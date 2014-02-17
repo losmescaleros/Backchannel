@@ -1,0 +1,22 @@
+<% provide(:title, "Category: #{@category.name}") %>
+<h1>Category: <%= @category.name %></h1>
+<div class="row">
+  <div class="col-xs-6">
+    <div class="row">
+      <%=label(:category, :name) %>
+      <%= @category.name %>
+    </div>
+    <div class="row">
+
+      <% if @category.approved %>
+        <div class="alert alert-success">
+          <%= label(:category, :approval) %>: Approved
+        </div>
+      <%else%>
+        <div class="alert alert-warning">
+          <%= label(:category, :approval) %>: Pending
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
