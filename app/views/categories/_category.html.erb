@@ -10,7 +10,7 @@
     <%else%>
       <td class="warning">
         Pending
-        <%if current_user.admin? %>
+        <%if signed_in? && current_user.admin? %>
           | <%= link_to "Approve", controller: "categories", action: "approve", id: category %>
           <% if !category.approved %>
             | <%= link_to "Delete",

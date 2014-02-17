@@ -30,11 +30,15 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.user_level == SUPER_ADMIN_USER_LEVEL || self.user_level == ADMIN_USER_LEVEL
+    if(!self.nil?)
+      self.user_level == SUPER_ADMIN_USER_LEVEL || self.user_level == ADMIN_USER_LEVEL
+    end
   end
 
   def super_admin?
-    self.user_level == SUPER_ADMIN_USER_LEVEL
+    if(!self.nil?)
+      self.user_level == SUPER_ADMIN_USER_LEVEL
+    end
   end
 
   def promote
