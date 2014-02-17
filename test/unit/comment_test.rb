@@ -38,4 +38,12 @@ class CommentTest < ActiveSupport::TestCase
     assert (com.up_voted?(user)), "user one should have upvoted comment one"
     assert !(com2.up_voted?(user)), "user one should not have upvoted"
   end
+
+  test "comment should sort properly" do
+    com = comments(:comment_two)
+    com2 = comments(:comment_three)
+    comments = [com, com2]
+    comments.sort!
+    assert (comments[0] == com), "comment two should be before comment three"
+  end
 end

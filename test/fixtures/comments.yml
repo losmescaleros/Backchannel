@@ -13,3 +13,10 @@ comment_two:
   deleted: false
   user: two
   post: post_two
+
+comment_three:
+  txt: This is yet another string of at least 10 characters
+  time: 2014-02-04 20:02:14
+  deleted: false
+  user: one
+  post: post_two
