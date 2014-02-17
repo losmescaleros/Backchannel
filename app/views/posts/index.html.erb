@@ -6,7 +6,10 @@
         text-align: right;
     }
 </style>
-<%= link_to 'New Post', action: "new" %>
+<% if signed_in?%>
+    <%= link_to 'New Post', action: "new" %>
+<%end%>
+
 
 <h1>Posts</h1>
 <table class="table">

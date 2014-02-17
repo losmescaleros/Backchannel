@@ -17,13 +17,13 @@
 <div class="post">
   <div style="margin: inherit; font-size:12pt;">
     <%= @post.user.name %> : <%= @post.time %>
-    <% if signed_in? && current_user==@post.user %>
+    <% if signed_in? && ( current_user==@post.user || current_user.admin? ) %>
         <%= link_to 'Edit', edit_post_path(@post) %>
         <%= link_to 'Delete', @post, method: :delete, confirm: 'Are you sure?'%>
     <% end %>
     <div style="float: right; text-align: right">
     Votes: <%= @post.up_vote_count() %>
-      <% if signed_in? %>
+      <% if signed_in?  && current_user!=@post.user %>
           <% if @post.up_voted?(current_user) %>
               <%= link_to "DeVote", :controller => "posts" , :action=> "unvote" %>
           <% else %>
