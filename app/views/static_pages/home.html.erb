@@ -9,7 +9,7 @@
       <%= link_to "More Information", about_url, :class => "btn btn-lg btn-primary" %>
     </div>
     <div class="col-xs-4">
-      <button class="btn btn-lg btn-primary">View All Posts</button>
+      <%= link_to "View All Posts", posts_index_path, :class => "btn btn-lg btn-primary" %>
     </div>
     <%if !signed_in? %>
         <div class="col-xs-4">
