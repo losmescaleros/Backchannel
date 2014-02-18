@@ -24,3 +24,6 @@ category from the list of categories.
 included in the layout's navigation bar. You may choose to refine your search
 by selecting a search criteria option from the dropdown list beside the search
 form.
+* When using the search bar, searching by category looks for an exact match of the category
+name. If you wish, you may also view all categories and view posts associated with that specific
+category.
