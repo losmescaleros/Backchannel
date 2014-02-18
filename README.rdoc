@@ -11,10 +11,10 @@ This application was created for the CSC 517 Spr 2014 Ruby on Rails Project.
 Test::Unit
 
 === Starting URL
-http://127.0.0.1/3000
+http://152.1.13.231:5801/
 
 === To Run the App
-rails server -p
+rails server -p 5801
 
 === Other Notes
 * Signed in users may propose categories, which are to be approved by an administrator.
