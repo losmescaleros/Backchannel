@@ -40,4 +40,6 @@
 <%= render @post.comments %>
 
 
-<%= link_to "Add Comment", :controller => "comments" , :action=>"new"%>
+<% if signed_in? %>
+     <%= link_to "Add Comment", :controller => "comments" , :action=>"new"%>
+<% end %>
