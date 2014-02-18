@@ -11,10 +11,10 @@ This application was created for the CSC 517 Spr 2014 Ruby on Rails Project.
 Test::Unit
 
 === Starting URL
-http://127.0.0.1/3000
+http://152.1.13.231:5801/
 
 === To Run the App
-rails server -p
+rails server -p 5801
 
 === Other Notes
 * Signed in users may propose categories, which are to be approved by an administrator.
@@ -24,3 +24,6 @@ category from the list of categories.
 included in the layout's navigation bar. You may choose to refine your search
 by selecting a search criteria option from the dropdown list beside the search
 form.
+* When using the search bar, searching by category looks for an exact match of the category
+name. If you wish, you may also view all categories and view posts associated with that specific
+category.
