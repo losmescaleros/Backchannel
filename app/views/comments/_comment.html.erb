@@ -12,7 +12,7 @@
 <div class="comments">
   <div style="margin: 5px; font-size:12pt;">
     <%= comment.user.name %> : <%= comment.time %>
-    <% if signed_in? && current_user==comment.user %>
+    <% if signed_in?  && ( current_user==@post.user || current_user.admin? ) %>
         <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
         <%= link_to "Delete", :controller => "posts" , :action=> :deletecomment, :cid=>comment.id %>
 

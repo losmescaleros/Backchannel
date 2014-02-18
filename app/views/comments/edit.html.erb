@@ -6,7 +6,6 @@
       <%= render 'shared/comment_error_messages' %>
       <div class="form-group">
         <%= f.label "Comment" %>
-        <%= params.inspect %>
         <%= f.text_area :txt, :class => "form-control", :placeholder => "Comment" %>
       </div>
       <%= f.submit 'Update', :class => "btn btn-default" %>
