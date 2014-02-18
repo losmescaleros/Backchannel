@@ -185,7 +185,7 @@ private
     elsif search_criteria == "category" #match posts in a category with the given name
       full_search = search_terms.join(" ")
       posts.reject! do |post|
-        post.category.name.downcase == full_search.downcase
+        post.category.name.downcase != full_search.downcase
       end
       posts
     elsif search_criteria == "user" #match posts with the given username
