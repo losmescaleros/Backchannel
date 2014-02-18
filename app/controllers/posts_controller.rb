@@ -21,6 +21,8 @@ class PostsController < ApplicationController
     criteria = params[:search][:search_criteria]
     terms = params[:search][:query_string].split(/[ _]/)
     @posts = search_for(terms, criteria)
+    @criteria = criteria
+    @query = params[:search][:query_string]
   end
 
   def create
@@ -173,21 +175,20 @@ private
   def search_for(search_terms, search_criteria) #class method to find posts with the given search terms, search_terms is expected to be an array
     posts = Post.all
 
-    if search_criteria.to_s == "all"
+    if search_criteria.to_s == "post" #match posts containing all key words
       search_terms.each do |term|
         posts.reject! do |post|
-          post.txt !~ /#{term}/i
+          post.txt !~ /#{term}/i && post.title !~ /#{term}/i
         end
       end
       posts
-    elsif search_criteria == "category"
-      search_terms.each do |term|
-        posts.reject! do |post|
-          post.category.name !~ /#{term}/i
-        end
+    elsif search_criteria == "category" #match posts in a category with the given name
+      full_search = search_terms.join(" ")
+      posts.reject! do |post|
+        post.category.name.downcase == full_search.downcase
       end
       posts
-    elsif search_criteria == "user"
+    elsif search_criteria == "user" #match posts with the given username
       search_terms.each do |term|
         posts.reject! do |post|
           post.user.name !~ /#{term}/i
