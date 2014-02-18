@@ -35,7 +35,7 @@
       <%= form_for(:search, url: posts_search_path, html: {:class => "navbar-form navbar-left", :role => "search"}) do |f| %>
 
           <%= f.text_field :query_string, :class => "form-control", :placeholder => "Search..." %>
-          <%= f.select(:search_criteria, [['All', 'all'], ['User', 'user'], ['Category', 'category']])%>
+          <%= f.select(:search_criteria, [['Post Content', 'post'], ['User', 'user'], ['Category', 'category']])%>
           <%= f.submit "Submit", :class => "btn btn-default" %>
       <%end%>
 

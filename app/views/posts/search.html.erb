@@ -9,6 +9,17 @@
 
 
 <h1>Search Results</h1>
+<% if @criteria == "post" %>
+    <b>Searching for posts with</b> "<%= @query %>" <b>in their content</b>
+<%end%>
+<% if @criteria == "category" %>
+    <b>Searching for posts inside the</b> "<%= @query %>" <b>category</b>
+<%end%>
+<% if @criteria == "user" %>
+    <b>Searching for posts made by the user</b> "<%= @query %>"
+<%end%>
+
+<% if @posts.length > 0 %>
 <table class="table">
   <tr>
     <th>
@@ -30,3 +41,6 @@
 
   <%= render @posts %>
 </table>
+<% else %>
+    <h2>No posts found!</h2>
+<%end%>
