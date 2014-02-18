@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :new, :upvote, :unvote, :comment, :commentunvote, :commentupvote, :deletecomment, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all.sort_by { |post| post[:numerical_value] }.reverse!
+    @posts = Post.all.sort.reverse
   end
 
   def show
