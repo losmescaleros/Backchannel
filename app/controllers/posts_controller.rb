@@ -18,8 +18,9 @@ class PostsController < ApplicationController
   end
 
   def search
+    criteria = params[:search][:search_criteria]
     terms = params[:search][:query_string].split(/[ _]/)
-    @posts = search_for(terms)
+    @posts = search_for(terms, criteria)
   end
 
   def create
@@ -161,17 +162,39 @@ private
     params.require(:comment).permit(:txt)
   end
 
+  def search_params
+    params.require(:search).permit(:query_string, :search_criteria)
+  end
+
   def signed_in_user
     redirect_to login_url, notice: "Log in to continue" unless signed_in?
   end
 
-  def search_for(search_terms) #class method to find posts with the given search terms, search_terms is expected to be an array
+  def search_for(search_terms, search_criteria) #class method to find posts with the given search terms, search_terms is expected to be an array
     posts = Post.all
-    search_terms.each do |term|
-      posts.reject! do |post|
-        post.txt !~ /#{term}/i
+
+    if search_criteria.to_s == "all"
+      search_terms.each do |term|
+        posts.reject! do |post|
+          post.txt !~ /#{term}/i
+        end
       end
+      posts
+    elsif search_criteria == "category"
+      search_terms.each do |term|
+        posts.reject! do |post|
+          post.category.name !~ /#{term}/i
+        end
+      end
+      posts
+    elsif search_criteria == "user"
+      search_terms.each do |term|
+        posts.reject! do |post|
+          post.user.name !~ /#{term}/i
+        end
+      end
+      posts
     end
-    posts
+
   end
 end
