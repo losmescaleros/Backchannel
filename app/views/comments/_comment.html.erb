@@ -23,7 +23,9 @@
           <% if comment.up_voted?(current_user) %>
               <%= link_to "DeVote", :controller => "posts" , :action=> :commentunvote, :cid=>comment.id %>
           <% else %>
-              <%= link_to "UpVote", :controller => "posts" , :action=> :commentupvote, :cid=>comment.id %>
+              <% if current_user != comment.user %>
+                <%= link_to "UpVote", :controller => "posts" , :action=> :commentupvote, :cid=>comment.id %>
+              <%end%>
           <% end %>
       <% end %>
     </div>

@@ -11,7 +11,7 @@
         <%= f.text_area :txt, :class => "form-control", :placeholder => "Text" %>
         <%= f.label :Category %>
         </br>
-        <%= collection_select :category, :category_id, Category.all, :id, :name %>
+        <%= collection_select :category, :category_id, Category.where(:approved => true), :id, :name %>
       </div>
       <%= f.submit 'Post', :class => "btn btn-default" %>
   <% end %>
