@@ -17,6 +17,10 @@ http://152.1.13.231:5801/
 rails server -p 5801
 
 === Other Notes
+* The super administrator account cannot be deleted and is seeded in the database during
+deployment. The account information is:
+email: super_admin@backchannel.com
+password: 'super_admin'
 * Signed in users may propose categories, which are to be approved by an administrator.
 Administrators may choose to deny a proposal, which essentially is deleting the
 category from the list of categories.
