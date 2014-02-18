@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    terms = params[:search].split(/[ _]/)
+    terms = params[:search][:query_string].split(/[ _]/)
     @posts = search_for(terms)
   end
 
