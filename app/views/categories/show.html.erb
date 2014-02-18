@@ -1,7 +1,18 @@
 <% provide(:title, "Category: #{@category.name}") %>
 <h1>Category: <%= @category.name %></h1>
 <div class="row">
+
   <div class="col-xs-6">
+    <% if @category.approved %>
+        <%= form_for(:search, url: posts_search_path, html: {:class => "pull-right", :role => "search"}) do |f| %>
+
+            <%= f.hidden_field(:query_string, :value => @category.name) %>
+            <%= f.hidden_field(:search_criteria, :value => 'category') %>
+
+            <%= f.submit "Posts with this Category", :class => "btn btn-default btn-xs" %>
+        <%end%>
+    <% end %>
+
     <div class="row">
       <%=label(:category, :name) %>
       <%= @category.name %>
