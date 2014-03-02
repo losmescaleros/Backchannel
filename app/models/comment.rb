@@ -19,6 +19,15 @@ class Comment < ActiveRecord::Base
     UpVoteComment.where('comment_id = ? AND user_id = ?', self.id, user_id).exists?
   end
 
+  def user
+    real_user = User.find_by_id(self[:user_id])
+    if real_user.nil?
+      User.blank_user
+    else
+      real_user
+    end
+  end
+
   def <=>(other)
     self.time <=> other.time
   end

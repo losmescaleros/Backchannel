@@ -38,6 +38,15 @@ class Post < ActiveRecord::Base
     (self.numerical_value<=>other.numerical_value)
   end
 
+  def user
+    real_user = User.find_by_id(self[:user_id])
+    if real_user.nil?
+      User.blank_user
+    else
+      real_user
+    end
+  end
+
   private
   def default_values
     self.time ||= Time.now.to_formatted_s :rfc822 #picked this up from stackoverflow for getting a correctly formatted timestamp

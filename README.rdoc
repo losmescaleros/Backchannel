@@ -31,3 +31,4 @@ form.
 * When using the search bar, searching by category looks for an exact match of the category
 name. If you wish, you may also view all categories and view posts associated with that specific
 category.
+* Functional and integration tests are not complete, due to lack of time.

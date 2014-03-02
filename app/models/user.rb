@@ -54,6 +54,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  #Class method to return a blank user for whatever reason a blank user might be needed
+  def User.blank_user
+    User.new(:name => '[[Deleted]]', :email => 'n@n.n', :user_level => 0)
+  end
+
   # Class method to get a randomly generated token
   def User.new_remember_token
     SecureRandom.urlsafe_base64
