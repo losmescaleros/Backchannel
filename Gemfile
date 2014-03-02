@@ -32,6 +32,15 @@ gem 'jquery-rails'
 #  gem "minitest-reporters", '>= 0.5.0'
 #end
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
+end
+
 gem 'bootstrap-sass', '~> 3.1.0'
 
 gem 'bcrypt-ruby', '~> 3.0.0'

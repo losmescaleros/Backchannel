@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Backchannel</title>
+  <title>Backchannel | <%= yield(:title) %></title>
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -36,7 +36,7 @@
 
           <%= f.text_field :query_string, :class => "form-control", :placeholder => "Search..." %>
           <%= f.select(:search_criteria, [['Post Content', 'post'], ['User', 'user'], ['Category', 'category']])%>
-          <%= f.submit "Submit", :class => "btn btn-default" %>
+          <%= f.submit "Search", :class => "btn btn-default" %>
       <%end%>
 
 

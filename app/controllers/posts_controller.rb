@@ -169,7 +169,10 @@ private
   end
 
   def signed_in_user
-    redirect_to login_url, notice: "Log in to continue" unless signed_in?
+    unless signed_in?
+      store_location
+      redirect_to login_url, notice: "Please sign in."
+    end
   end
 
   def search_for(search_terms, search_criteria) #class method to find posts with the given search terms, search_terms is expected to be an array

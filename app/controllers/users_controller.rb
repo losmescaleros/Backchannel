@@ -89,7 +89,10 @@ class UsersController < ApplicationController
     end
 
     def signed_in_user
-      redirect_to login_url, notice: "Log in to continue" unless signed_in?
+      unless signed_in?
+        store_location
+        redirect_to login_url, notice: "Log in to continue"
+      end
     end
 
     def correct_user
