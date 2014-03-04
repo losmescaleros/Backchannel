@@ -8,13 +8,44 @@ This application was created for the CSC 517 Spr 2014 Ruby on Rails Project.
 * Mitchell Neville (mdnevill)
 
 === Testing Framework
-Test::Unit
+Test::Unit is used for unit testing, while RSpec is used for integration and functional
+tests.
 
 === Starting URL
 http://152.1.13.231:5801/
 
-=== To Run the App
-rails server -p 5801
+=== To Run the Application
+For a fresh install, run:
+%bundle install
+%rake db:seed
+
+Then start the server:
+%rails server -p 5801
+
+=== On First Startup
+==== Seeds
+The application seeded with a few users and categories. The super_admin account
+(username: super_admin@backchannel.com password: 'super_admin') is created along
+ with an admin account (username: admin@backchannel.com password: 'admin'). Two
+ other users (Mitchell and Marty) are created as well.
+
+==== Managing Users and Categories
+ The categories Science and History are created initially as approved, while
+ Biology is left unapproved to demonstrate this capability. As an admin, you may
+ navigate to Manage Users using the top right dropdown menu button after log in.
+ From here, you may view, delete, or promote users to admin status. Regular users are
+ denied access to viewing users.
+
+ You may also navigate to Categories from the top menu, to display, approve, or
+ delete categories. Users may request new categories, but they must be approved
+ before use. If you wish to deny a category approval, it is simply deleted. Regular
+ users have access to the Categories index, so that they can check the status of their
+ proposed categories.
+
+==== Searching
+ You may search from the top search input area. You may select to search by
+ category name, user name, or post content from the drop down box next to the
+ search input.
 
 === Other Notes
 * The super administrator account cannot be deleted and is seeded in the database during
@@ -31,4 +62,3 @@ form.
 * When using the search bar, searching by category looks for an exact match of the category
 name. If you wish, you may also view all categories and view posts associated with that specific
 category.
-* Functional and integration tests are not complete, due to lack of time.

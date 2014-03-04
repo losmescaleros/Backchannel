@@ -40,7 +40,6 @@ describe "Authentication pages" do
 
   describe "authorization" do
     let(:user){FactoryGirl.create(:user)}
-
     describe "for non-signed in users" do
       describe "in the Users controller" do
         describe "visiting the users index" do

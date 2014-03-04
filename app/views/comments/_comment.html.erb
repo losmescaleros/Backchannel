@@ -21,10 +21,10 @@
       Votes: <%= comment.up_vote_count() %>
       <% if signed_in? %>
           <% if comment.up_voted?(current_user) %>
-              <%= link_to "DeVote", :controller => "posts" , :action=> :commentunvote, :cid=>comment.id %>
+              <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, :controller => "posts" , :action=> :commentunvote, :cid=>comment.id %>
           <% else %>
               <% if current_user != comment.user %>
-                <%= link_to "UpVote", :controller => "posts" , :action=> :commentupvote, :cid=>comment.id %>
+                <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, :controller => "posts" , :action=> :commentupvote, :cid=>comment.id %>
               <%end%>
           <% end %>
       <% end %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:edit, :update, :destroy]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :admin_user, only: [:index, :destroy, :promote]
+  before_filter :admin_user, only: [:index, :promote]
   before_filter :super_admin_user, only: [:demote]
 
   def index

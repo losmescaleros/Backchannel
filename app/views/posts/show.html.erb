@@ -25,9 +25,9 @@
     Votes: <%= @post.up_vote_count() %>
       <% if signed_in?  && current_user!=@post.user %>
           <% if @post.up_voted?(current_user) %>
-              <%= link_to "DeVote", :controller => "posts" , :action=> "unvote" %>
+              <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, :controller => "posts" , :action=> "unvote" %>
           <% else %>
-              <%= link_to "UpVote", :controller => "posts" , :action=> "upvote" %>
+              <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, :controller => "posts" , :action=> "upvote" %>
           <% end %>
       <% end %>
     </div>
