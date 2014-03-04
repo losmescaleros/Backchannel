@@ -31,7 +31,7 @@ class Post < ActiveRecord::Base
     if comments.length>0
       latestTime = comments.last.time
     end
-    numValue = (self.up_vote_count + 1).to_f / ((.65*(((Time.now - latestTime))/(3600)))+1).to_f
+    numValue = (self.up_vote_count + 1).to_f / ((0.65*(((Time.now - latestTime))/(3600)))+1).to_f
   end
 
   def <=>(other) #defined as the number of upvotes / the days elapsed since creation: high numbers of upvotes will prevent a topic from "sageing"
